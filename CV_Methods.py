@@ -112,16 +112,59 @@ def kmm_weights(X_train, X_test, gamma=1.0, B=10):
         return np.ones(n_train)
     return res.x
 
-def kmm_weighted_spatial_cv(X, y, n_folds=5, gamma=0.5, B=10):
+def sample_uniform_target(coord_range=(-5, 5), n_target=1000, random_state=0):
+    rng = np.random.RandomState(random_state)
+    return rng.uniform(coord_range[0], coord_range[1], size=(n_target, 2))
+
+
+def _resolve_weights(weighting, X_tr, X_te, train_idx, global_weights, gamma, B):
+    if weighting == 'fold':
+        return kmm_weights(X_tr, X_te, gamma=gamma, B=B)
+    elif weighting == 'global':
+        return global_weights[train_idx]
+    else:
+        return "oops"
+
+
+def kmm_weighted_spatial_cv(X, y, n_folds=5, gamma=0.5, B=10, weighting='fold', X_target=None):
     kmeans = KMeans(n_clusters=n_folds, random_state=42, n_init=10)
     fold_ids = kmeans.fit_predict(X)
+
+    global_weights = None
+    if weighting == 'global':
+        if X_target is None:
+            X_target = sample_uniform_target()
+        global_weights = kmm_weights(X, X_target, gamma=gamma, B=B)
+
     errors = []
     for test_fold in range(n_folds):
         test_idx = np.where(fold_ids == test_fold)[0]
         train_idx = np.where(fold_ids != test_fold)[0]
         X_tr, X_te = X[train_idx], X[test_idx]
         y_tr, y_te = y[train_idx], y[test_idx]
-        weights = kmm_weights(X_tr, X_te, gamma=gamma, B=B)
+        weights = _resolve_weights(weighting, X_tr, X_te, train_idx, global_weights, gamma, B)
+        model = LinearRegression()
+        model.fit(X_tr, y_tr, sample_weight=weights)
+        y_pred = model.predict(X_te)
+        errors.append(mean_squared_error(y_te, y_pred))
+    return np.mean(errors), np.std(errors)
+
+
+def kmm_weighted_random_cv(X, y, n_folds=5, gamma=0.5, B=10, weighting='fold', X_target=None):
+    # G2 extension
+    kf = KFold(n_splits=n_folds, shuffle=True, random_state=42)
+
+    global_weights = None
+    if weighting == 'global':
+        if X_target is None:
+            X_target = sample_uniform_target()
+        global_weights = kmm_weights(X, X_target, gamma=gamma, B=B)
+
+    errors = []
+    for train_idx, test_idx in kf.split(X):
+        X_tr, X_te = X[train_idx], X[test_idx]
+        y_tr, y_te = y[train_idx], y[test_idx]
+        weights = _resolve_weights(weighting, X_tr, X_te, train_idx, global_weights, gamma, B)
         model = LinearRegression()
         model.fit(X_tr, y_tr, sample_weight=weights)
         y_pred = model.predict(X_te)
@@ -165,8 +208,8 @@ def run_comparison(n_folds=5, n_samples=300, noise_std=0.3, gamma=0.5, B=10):
     display_df = df.copy()
     display_df['Random CV'] = display_df['Random CV_mean'].map('{:.4f}'.format) + ' ± ' + display_df['Random CV_std'].map('{:.4f}'.format)
     display_df['Spatial CV'] = display_df['Spatial CV_mean'].map('{:.4f}'.format) + ' ± ' + display_df['Spatial CV_std'].map('{:.4f}'.format)
-    display_df['Importance-weighted CV'] = display_df['Importance-weighted CV_mean'].map('{:.4f}'.format) + ' ± ' + display_df['Importance-weighted CV_std'].map('{:.4f}'.format)
-    display_df['KMM-weighted spatial CV'] = display_df['KMM-weighted spatial CV_mean'].map('{:.4f}'.format) + ' ± ' + display_df['KMM-weighted spatial CV_std'].map('{:.4f}'.format)
+    display_df['Importance-weighted CV'] = display_df['Importance-weighted CV_mean'].map('{:.4f}'.format) + ' +- ' + display_df['Importance-weighted CV_std'].map('{:.4f}'.format)
+    display_df['KMM-weighted spatial CV'] = display_df['KMM-weighted spatial CV_mean'].map('{:.4f}'.format) + ' +- ' + display_df['KMM-weighted spatial CV_std'].map('{:.4f}'.format)
     display_df = display_df[['Function', 'Random CV', 'Spatial CV', 'Importance-weighted CV', 'KMM-weighted spatial CV']]
 
     return results, display_df
