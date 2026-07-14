@@ -35,7 +35,7 @@ realized in `kmm_weights`
 ## Metrics
 Realised in code: simple MSE. But more effective metrics are:
 * *Risk-estimation bias*: difference between estimated CV error and known deployment error in simulations.
-* *Absolute and relative bias*: $|\\hat{R}_{CV} - R_{dep}|$ and the same error normalized by $R_{dep}$.
+* *Absolute and relative bias*: $|\hat{R}_{CV} - R_{dep}|$ and the same error normalized by $R_{dep}$.
 * *Variance and stability*: variability across repeated fold partitions and KMM hyperparameters.
 * *Overlap quality*: effective sample size, maximum weight, clipped-weight share, and MMD before and after weighting.
 * *Model-selection impact*: whether weighted spatial CV selects hyperparameters that improve deployment error.

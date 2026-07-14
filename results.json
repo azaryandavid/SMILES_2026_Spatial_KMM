@@ -1,57 +1,57 @@
 [
   {
     "Function": "linear",
-    "Random CV_mean": 0.008517494507163072,
-    "Random CV_std": 0.00122508078146982,
-    "Spatial CV_mean": 0.00844453230243111,
-    "Spatial CV_std": 0.0012449596493326121,
-    "Importance-weighted CV_mean": 0.012962278562832386,
-    "Importance-weighted CV_std": 0.0057227061598061945,
-    "KMM-weighted spatial CV_mean": 0.009323143383237639,
-    "KMM-weighted spatial CV_std": 0.001474209191881399
+    "Random CV_mean": 0.007666445347961208,
+    "Random CV_std": 0.0013262850800296049,
+    "Spatial CV_mean": 0.007965319544187135,
+    "Spatial CV_std": 0.0006517217314394816,
+    "Importance-weighted CV_mean": 0.023890757983471185,
+    "Importance-weighted CV_std": 0.031583950175923144,
+    "KMM-weighted spatial CV_mean": 0.007950843297322253,
+    "KMM-weighted spatial CV_std": 0.000707444134154111
   },
   {
     "Function": "exponential",
-    "Random CV_mean": 0.35168451221169594,
-    "Random CV_std": 0.07640206677560844,
-    "Spatial CV_mean": 0.401463750230865,
-    "Spatial CV_std": 0.10236403763037226,
-    "Importance-weighted CV_mean": 0.5830151004216045,
-    "Importance-weighted CV_std": 0.2769662076136009,
-    "KMM-weighted spatial CV_mean": 0.4471607970286969,
-    "KMM-weighted spatial CV_std": 0.11985455508874499
+    "Random CV_mean": 0.3523585718229822,
+    "Random CV_std": 0.07419995205157649,
+    "Spatial CV_mean": 0.41782195102529157,
+    "Spatial CV_std": 0.053585109942660726,
+    "Importance-weighted CV_mean": 0.5153133707657365,
+    "Importance-weighted CV_std": 0.1480410225551686,
+    "KMM-weighted spatial CV_mean": 0.5118485456385041,
+    "KMM-weighted spatial CV_std": 0.2130828482412783
   },
   {
     "Function": "periodic",
-    "Random CV_mean": 1.028743161755625,
-    "Random CV_std": 0.08493898165413857,
-    "Spatial CV_mean": 1.0119921128892764,
-    "Spatial CV_std": 0.20307271294667897,
-    "Importance-weighted CV_mean": 1.6779619054528403,
-    "Importance-weighted CV_std": 0.7356330454320628,
-    "KMM-weighted spatial CV_mean": 1.1101111096862362,
-    "KMM-weighted spatial CV_std": 0.30560191699288775
+    "Random CV_mean": 1.0117465057142865,
+    "Random CV_std": 0.0971154964564969,
+    "Spatial CV_mean": 1.0330983128355498,
+    "Spatial CV_std": 0.10595884984432812,
+    "Importance-weighted CV_mean": 2.0126899794880995,
+    "Importance-weighted CV_std": 1.3489830292199991,
+    "KMM-weighted spatial CV_mean": 1.3107181832316064,
+    "KMM-weighted spatial CV_std": 0.48789579805183336
   },
   {
     "Function": "random",
-    "Random CV_mean": 1.0038876835546127,
-    "Random CV_std": 0.05216516521496726,
-    "Spatial CV_mean": 0.9948340891634878,
-    "Spatial CV_std": 0.04024207640298736,
-    "Importance-weighted CV_mean": 1.1642904234296456,
-    "Importance-weighted CV_std": 0.16496951022112005,
-    "KMM-weighted spatial CV_mean": 1.0602566145831804,
-    "KMM-weighted spatial CV_std": 0.07101626290385461
+    "Random CV_mean": 1.0079351519735258,
+    "Random CV_std": 0.08346050556801426,
+    "Spatial CV_mean": 0.9862831306789858,
+    "Spatial CV_std": 0.10270759051948694,
+    "Importance-weighted CV_mean": 1.8336070773737068,
+    "Importance-weighted CV_std": 1.0281113691143215,
+    "KMM-weighted spatial CV_mean": 1.1638337133851588,
+    "KMM-weighted spatial CV_std": 0.17309823057851023
   },
   {
     "Function": "random_autocorr",
-    "Random CV_mean": 0.9631121359648697,
-    "Random CV_std": 0.08524292119760898,
-    "Spatial CV_mean": 1.0907174411474079,
-    "Spatial CV_std": 0.5135024945851463,
-    "Importance-weighted CV_mean": 1.4101489425659843,
-    "Importance-weighted CV_std": 0.7539218470692672,
-    "KMM-weighted spatial CV_mean": 1.0991160813641367,
-    "KMM-weighted spatial CV_std": 0.5371925930395375
+    "Random CV_mean": 0.9888009090230228,
+    "Random CV_std": 0.11436722111660759,
+    "Spatial CV_mean": 1.4783165413857868,
+    "Spatial CV_std": 0.29696226334835246,
+    "Importance-weighted CV_mean": 3.1797552993101057,
+    "Importance-weighted CV_std": 1.9994607272213478,
+    "KMM-weighted spatial CV_mean": 1.6300726850288505,
+    "KMM-weighted spatial CV_std": 0.4111109414420259
   }
 ]
