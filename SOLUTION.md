@@ -55,3 +55,15 @@ Results are imported from `results.json`.
 | random          | 1.0276 ± 0.2354 | 1.0128 ± 0.1178 | 1.5315 ± 0.7885          | 1.0756 ± 0.1715           |
 | random_autocorr | 1.0067 ± 0.1173 | 1.9548 ± 1.0955 | 1.6816 ± 0.6645          | 1.6155 ± 1.4618           |
 <!-- TABLE_END -->
+
+## G2 results
+
+`KMM-spatial (fold)` re-solves the KMM program per test fold, matching that fold's train covariates to its own held-out covariates. `KMM-spatial (global)` solves KMM once for the whole sample against a fixed proxy of the deployment distribution (uniform coverage of the domain) and reuses those weights across folds. The `-random` variants apply the same two weighting schemes on top of random (non-spatial) folds, as a control.
+
+| Function        | Random CV        | Spatial CV       | KMM-spatial (fold)   | KMM-spatial (global)   | KMM-random (fold)   | KMM-random (global)   |
+|:----------------|:-----------------|:-----------------|:---------------------|:-----------------------|:--------------------|:----------------------|
+| linear          | 0.0106 +- 0.0009 | 0.0119 +- 0.0029 | 0.0124 +- 0.0007     | 0.0112 +- 0.0021       | 0.0119 +- 0.0012    | 0.0120 +- 0.0013      |
+| exponential     | 0.3645 +- 0.0502 | 0.3946 +- 0.0399 | 0.4230 +- 0.0544     | 0.4252 +- 0.0651       | 0.4590 +- 0.0148    | 0.4512 +- 0.0128      |
+| periodic        | 1.0233 +- 0.2093 | 1.0289 +- 0.1059 | 1.2362 +- 0.2611     | 1.2322 +- 0.2933       | 1.0733 +- 0.2339    | 1.0999 +- 0.2158      |
+| random          | 1.0043 +- 0.0549 | 1.0387 +- 0.1443 | 1.2510 +- 0.1861     | 1.3382 +- 0.2845       | 1.0798 +- 0.1126    | 1.0728 +- 0.0925      |
+| random_autocorr | 0.9848 +- 0.1661 | 1.0730 +- 0.6818 | 1.4286 +- 1.0597     | 1.7685 +- 1.0497       | 1.1705 +- 0.1676    | 1.1803 +- 0.1695      |
